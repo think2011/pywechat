@@ -1,0 +1,2 @@
+# pywechat
+windows pcWeChat automation
