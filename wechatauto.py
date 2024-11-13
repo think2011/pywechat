@@ -5,7 +5,7 @@ FriendSettings: 涵盖了PC微信针对某个好友的全部操作\n
 GroupSettings: 涵盖了PC微信针对某个群聊的全部操作\n
 Contacts: 获取3种类型通讯录好友的备注与昵称包括:微信好友,企业号微信,群聊\n
 Call: 给某个好友打视频或语言电话\n
-Auto_response:自动接应微信视频或语言电话\n
+Auto_response:包含自动接应微信视频或语音电话和自动回复某个好友的自动回复功能\n
 WechatSettings: 修改PC微信设置\n
 \n
 函数:函数为上述模块内的所有方法\n
