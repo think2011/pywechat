@@ -4,10 +4,10 @@
 ### pywechat的使用非常简单，用户只需要通过调用相应的函数或模块即可实现所需的功能。
 
 #### pywechat项目结构：
-                            pywechat 
-                        /      |       \
-                      /	      |         \
-                wechatTools wechatauto winSettings   
+                          pywechat 
+                      /       |        \
+                    /	        |          \
+             wechatTools   wechatauto  winSettings   
 
 ##### wechatTools:包含Toools与API两个模块。 Tools中封装了3个关于PC微信的工具,包括:
 is_wechat_running:用来判断PC微信是否运行
