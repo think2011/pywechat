@@ -3,7 +3,7 @@
 ## 🍬🍬pywechat是一款基于pywinauto实现的Windows系统下PC微信自动化的Python库。它可以帮助用户实现微信的一系列自动化操作，包括发送消息、发送文件、自动回复以及针对微信好友的所有操作，针对微信群聊的所有操作。
 ### pywechat的使用非常简单，用户只需要通过调用相应的函数或模块即可实现所需的功能。
 ## pywechat项目结构：
-![image](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/pywechat项目结构.jpg)
+![image](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/pywechat_structure.jpg)
 <br>
 
 ##     该项目内的函数与方法名称与PC微信英文版各界面与功能英文翻译一致。其中pywechat的open_wechat函数无论微信是否打开，是否登录(需先前登录过,手机端勾选自动登录)均可正常打开微信,你只需要将微信WeChat.exe文件地址传入pywechat各个函数，或添加到windows系统环境变量中即可开启微信自动化之旅。🗺️🗺️
