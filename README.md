@@ -7,7 +7,8 @@
 <br>
 
 ## pywechat特点:该项目内的函数与方法名称与PC微信英文版各界面与功能英文翻译一致，直观，其中pywechat的open_wechat函数无论微信是否打开，是否登录(需先前登录过,手机端勾选自动登录)均可正常打开微信,你只需要将微信WeChat.exe文件地址传入pywechat各个函数，或添加到windows系统环境变量中。
-这里强烈建议将微信Wechat.exe文件添加到windows系统环境变量中，因为默认使用windows环境变量中的Wechat.exe路径启动微信,此时调用该函数无需任何参数
+这里强烈建议将微信Wechat.exe文件添加到windows系统环境变量中，因为pywechat默认使用windows环境变量中的Wechat.exe路径启动微信,此时调用其中的每个方法与函数无需传入wechat_path参数
+
 
 
 ### wechatTools🌪️🌪️
