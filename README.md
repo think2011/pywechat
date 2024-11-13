@@ -1,6 +1,6 @@
 # pywechat🥇
 ![image](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/introduction.jpg)
-## 🍬🍬pywechat是一款基于pywinauto实现的Windows系统下PC微信自动化的Python库。它可以帮助用户实现微信的一系列自动化操作，包括发送消息、发送文件、自动回复以及针对微信好友的所有操作，针对微信群聊的所有操作。
+## 🍬🍬pywechat是一款基于pywinauto实现的Windows系统下PC微信自动化的Python项目。它可以帮助用户实现微信的一系列自动化操作，包括发送消息、发送文件、自动回复以及针对微信好友的所有操作，针对微信群聊的所有操作。
 
 ### 微信版本:3.9.12.17
 ### 操作系统:🪟windows 10 🪟windows 11
