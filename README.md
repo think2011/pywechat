@@ -39,13 +39,13 @@
 #### 函数：该模块内所有函数为上述模块内的所有方法。
 <br>
 
-### 使用示例:
+### 使用示例:(注意，微信WeChat.exe路径已添加至windows系统环境变量,故，以下方法会或函数无需传入wechat_path这一参数)
 #### 给某个好友发送多条信息：
 ##### from pywechat.wechatauto import Messages
-##### Messages.send_messages_to_friend(friend="文件传输助手",messages=['你好','我再使用pywechat操控微信给你发消息','收到请回复'])
+##### Messages.send_messages_to_friend(friend="文件传输助手",messages=['你好','我正在使用pywechat操控微信给你发消息','收到请回复'])
 ##### 或者
 ##### import pywechat.wechatauto as wechat
-##### wechat.send_messages_to_friend(friend="文件传输助手",messages=['你好','我再使用pywechat操控微信给你发消息','收到请回复'])
+##### wechat.send_messages_to_friend(friend="文件传输助手",messages=['你好','我正在使用pywechat操控微信给你发消息','收到请回复'])
 <br>
 
 #### 自动接听语音视频电话:
@@ -53,5 +53,5 @@
 ##### Auto_response.auto_answer_call(duration=“1h”)
 ##### 或者
 ##### import pywechat.wechatauto as wechat
-##### wechat.auto_answer_call(duration='1h')
+##### wechat.auto_answer_call(broadcast_content='您好，我目前不在线我的PC微信正在由我的微信机器人控制请稍后再试',message='您好，我目前不在线我的PC微信正在由我的微信机器人控制请稍后再##### 试',duration='1h')
 
