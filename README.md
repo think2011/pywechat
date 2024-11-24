@@ -24,7 +24,7 @@ pip install pywechat127
 ### 添加微信至windows用户环境变量:
 #### pywechat已内置自动添加微信至用户环境变量的方法,运行下列代码即可自动添加微信路径至windows用户变量 :
 ```
-from pywechat127.wechatTools import Tools
+from pywechat127.WechatTools import Tools
 Tools.set_wechat_as_environ_path()
 ```
 #### 效果演示:
@@ -60,7 +60,7 @@ Tools.set_wechat_as_environ_path()
 #### (注意，微信WeChat.exe路径已添加至windows系统环境变量,故以下方法或函数无需传入wechat_path这一参数)
 #### 给某个好友发送多条信息：
 ```
- from pywechat127.WechatAuto import Messages
+from pywechat127.WechatAuto import Messages
 Messages.send_messages_to_friend(friend="文件传输助手",messages=['你好','我正在使用pywechat操控微信给你发消息','收到请回复'])
 ```
 ##### 或者
@@ -73,7 +73,7 @@ wechat.send_messages_to_friend(friend="文件传输助手",messages=['你好','�
 #### 自动接听语音视频电话:
 ```
 from pywechat127.WechatAuto import AutoReply
-Auto_response.auto_answer_call(broadcast_content='您好，我目前不在线我的PC微信正在由我的微信机器人控制请稍后再试',message='您好，我目前不在线我的PC微信正在由我的微信机器人控制请稍后再试',duration='1h',times=1)
+AutoReply.auto_answer_call(broadcast_content='您好，我目前不在线我的PC微信正在由我的微信机器人控制请稍后再试',message='您好，我目前不在线我的PC微信正在由我的微信机器人控制请稍后再试',duration='1h',times=1)
 ```
 ##### 或者
 ```
