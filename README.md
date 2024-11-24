@@ -14,6 +14,20 @@
 
 <br>
 
+### 使用方法:
+```
+pip install pywechat127
+```
+<br>
+
+### 添加微信至windows用户环境变量:
+#### pywechat已内置自动添加微信至用户环境变量的方法 
+```
+from pywechat127.wechatTools import Tools
+Tools.set_wechat_as_environ_path()
+```
+<br>
+
 ### wechatTools🌪️🌪️
 #### 模块包括:
 #### Tools:关于PC微信的一些工具,包括3个关于PC微信程序的方法和10个打开PC微信内各个界面的open系列方法。
