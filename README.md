@@ -10,7 +10,7 @@
 <br>
 
 ##   该项目内的函数与方法名称与PC微信英文版各界面与功能英文翻译一致。其中pywechat的open_wechat函数无论微信是否打开，是否登录(需先前登录过,手机端勾选自动登录)均可正常打开微信,你只需要将微信WeChat.exe文件地址传入pywechat各个函数，或添加到windows用户环境变量中即可开启微信自动化之旅。🗺️🗺️
-### 注:pywechat127最新版本已内置自动添加WeChat.exe为windows用户环境变量的方法。
+### 注:pywechat最新版本已内置自动添加WeChat.exe为windows用户环境变量的方法。
 这里强烈建议将微信Wechat.exe文件添加到windows系统环境变量中，因为pywechat默认使用windows环境变量中的Wechat.exe路径启动微信,此时调用其中的每个方法与函数无需传入wechat_path参数即可自动化操作微信。
 
 <br>
@@ -81,8 +81,8 @@ import pywechat127.WechatAuto as wechat
 wechat.auto_answer_call(broadcast_content='您好，我目前不在线我的PC微信正在由我的微信机器人控制请稍后再试',message='您好，我目前不在线我的PC微信正在由我的微信机器人控制请稍后再试',duration='1h',times=1)
 ```
 ### 多任务使用示例
-#### 注意,微信不支持多线程，只支持单线程多任务轮流执行，pywechat127也支持单线程多任务轮流执行，使用时尽量将最后一个函数或方法之前的所有函数与方法内的close_wechat参数设为False(默认为True)
-#### 这样你只需要打开一次微信，多个任务可以共享资源,更加高效，否则，每个函数或方法在运行时都会重启一次微信，较为低效。
+#### 注意,微信不支持多线程，只支持单线程多任务轮流执行，pywechat也支持单线程多任务轮流执行，在运行多个实例时尽量请将所有函数与方法内的close_wechat参数设为False(默认为True)
+#### 这样只需要打开一次微信，多个任务便可以共享资源,更加高效，否则，每个实例在运行时都会重启一次微信，较为低效。
 <br>
 
 ```
