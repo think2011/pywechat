@@ -4,7 +4,7 @@
 
 ### 微信版本:3.9.12.17
 ### 操作系统:🪟windows 10 🪟windows 11
-### python版本🐍:3.1x
+### python版本🐍:3.x
 ### pywechat项目结构：
 ![image](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/pywechat_structure.jpg)
 <br>
@@ -59,23 +59,23 @@ Tools.set_wechat_as_environ_path()
 #### (注意，微信WeChat.exe路径已添加至windows系统环境变量,故以下方法或函数无需传入wechat_path这一参数)
 #### 给某个好友发送多条信息：
 ```
- from pywechat.wechatauto import Messages
+ from pywechat127.wechatauto import Messages
 Messages.send_messages_to_friend(friend="文件传输助手",messages=['你好','我正在使用pywechat操控微信给你发消息','收到请回复'])
 ```
 ##### 或者
 ```
-import pywechat.wechatauto as wechat
+import pywechat127.wechatauto as wechat
 wechat.send_messages_to_friend(friend="文件传输助手",messages=['你好','我正在使用pywechat操控微信给你发消息','收到请回复'])
 ```
 <br>
 
 #### 自动接听语音视频电话:
 ```
-from pywechat.wechatauto import Auto_response
+from pywechat127.wechatauto import Auto_response
 Auto_response.auto_answer_call(broadcast_content='您好，我目前不在线我的PC微信正在由我的微信机器人控制请稍后再试',message='您好，我目前不在线我的PC微信正在由我的微信机器人控制请稍后再试',duration='1h',times=1)
 ```
 ##### 或者
 ```
-import pywechat.wechatauto as wechat
+import pywechat127.wechatauto as wechat
 wechat.auto_answer_call(broadcast_content='您好，我目前不在线我的PC微信正在由我的微信机器人控制请稍后再试',message='您好，我目前不在线我的PC微信正在由我的微信机器人控制请稍后再试',duration='1h',times=1)
 ```
