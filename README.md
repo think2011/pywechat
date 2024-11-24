@@ -86,7 +86,7 @@ wechat.auto_answer_call(broadcast_content='您好，我目前不在线我的PC�
 <br>
 
 ```
-from pywechat127.WeChatAuto import Messages,Files
+from pywechat127.WechatAuto import Messages,Files
 Messages.send_messages_to_friend(friend='文件传输助手',messages=['在测试','ok'],close_wechat=False)
 Files.send_fiels_to_friend(friend='文件传输助手',folder_path="E:\OneDrive\Desktop\测试专用",with_messages=True,messages_first=True,messages=['在测试文件消息一起发，你应该先看到这条消息，后看到文件'],close_wechat=True)
 ```
