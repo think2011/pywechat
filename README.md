@@ -27,7 +27,7 @@ from pywechat127.wechatTools import Tools
 Tools.set_wechat_as_environ_path()
 ```
 #### 效果演示:
-![image](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/演示效果.gif)
+![Alt text](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/演示效果.gif)
 <br>
 
 ### wechatTools🌪️🌪️
