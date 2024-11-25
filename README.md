@@ -1,6 +1,6 @@
 # pywechat🥇
 ![image](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/introduction.jpg)
-## 🍬🍬pywechat是一款基于pywinauto实现的Windows系统下PC微信自动化的Python项目。它可以帮助用户实现微信的一系列自动化操作，包括发送消息、发送文件、自动回复以及针对微信好友的所有操作，针对微信群聊的所有操作,最大特点为它支持单线程多个任务轮流进行,即完全模拟真人操作微信。
+## 🍬🍬pywechat是一款基于pywinauto实现的Windows系统下PC微信自动化的Python项目。它可以帮助用户实现微信的一系列自动化操作，包括发送消息、发送文件、自动回复以及针对微信好友的所有操作，针对微信群聊的所有操作,支持单线程多个任务轮流进行,完全模拟真人操作微信。
 
 ### 微信版本:3.9.12.17
 ### 操作系统:🪟windows 10 🪟windows 11
@@ -87,7 +87,7 @@ wechat.auto_answer_call(broadcast_content='您好，我目前不在线我的PC�
 
 ```
 from pywechat127.WechatAuto import Messages,Files
-Messages.send_messages_to_friend(friend='文件传输助手',messages=['在测试','ok'],close_wechat=False)
+Messages.send_messages_to_friend(friend='好友1',messages=['在测试','ok'],close_wechat=False)
 Files.send_files_to_friend(friend='文件传输助手',folder_path=r"E:\OneDrive\Desktop\测试专用",with_messages=True,messages_first=True,messages=['在测试文件消息一起发，你应该先看到这条消息，后看到文件'],close_wechat=True)
 ```
 #### 效果演示:
