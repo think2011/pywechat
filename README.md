@@ -102,4 +102,4 @@ Files.send_files_to_friend(friend='文件传输助手',folder_path=r"E:\OneDrive
 
 ##### 自动回复效果:
 
-![Alt text](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/AI接入实例.png)
+![Alt text](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/Ai接入实例.png)
