@@ -40,4 +40,5 @@ Have fun in WechatAutomation (＾＿－)
 ====
 '''
 #Author:Hello-Mr-Crab
-#version:1.5.8
+#version:1.6.3
+
