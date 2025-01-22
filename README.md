@@ -93,11 +93,6 @@ Files.send_files_to_friend(friend='文件传输助手',folder_path=r"E:\OneDrive
 #### 效果演示:
 ![Alt text](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/效果演示.gif)
 
-##### AI自动回复代码：
-<br>
-
-![Alt text](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/AI自动回复代码.png)
-
 <br>
 
 ##### 自动回复效果:
