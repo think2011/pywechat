@@ -65,7 +65,7 @@ Messages.send_messages_to_friend(friend="文件传输助手",messages=['你好',
 ```
 ##### 或者
 ```
-import pywechat127.WechatAuto as wechat
+import pywechat.WechatAuto as wechat
 wechat.send_messages_to_friend(friend="文件传输助手",messages=['你好','我正在使用pywechat操控微信给你发消息','收到请回复'])
 ```
 <br>
