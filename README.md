@@ -6,7 +6,7 @@
 ### 操作系统:🪟windows 10 🪟windows 11
 ### python版本🐍:3.x
 ### pywechat项目结构：
-![image](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/pywechat_structure.jpg)
+![image](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/pywechat架构图.png)
 <br>
 
 ##   该项目内的函数与方法名称与PC微信英文版各界面与功能英文翻译一致。其中pywechat的open_wechat函数无论微信是否打开，是否登录(需先前登录过,手机端勾选自动登录)均可正常打开微信,你只需要将微信WeChat.exe文件地址传入pywechat各个函数，或添加到windows用户环境变量中即可开启微信自动化之旅。🗺️🗺️
