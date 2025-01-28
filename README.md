@@ -16,9 +16,9 @@
 <br>
 
 ### 获取方法:
-#### 新版本:1.6.6
+#### 新版本:1.6.7
 ```
-pip install pywechat127==1.6.6
+pip install pywechat127==1.6.7
 ```
 <br>
 
