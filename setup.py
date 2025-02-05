@@ -1,6 +1,6 @@
 from setuptools import setup,find_packages
 setup(name='pywechat127',
-version='1.6.3',
+version='1.8.1',
 author='Hello-Mr-Crab',
 author_email='3083256475@qq.com',
 description=f'A Powerful Windows-PC-Wechat automation Tool',
