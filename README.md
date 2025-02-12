@@ -19,9 +19,6 @@
 #### 新版本:1.8.2
 ```
 pip install pywechat127==1.8.2
-or
-pip install --upgrade pywechat127
-```
 <br>
 
 ```
