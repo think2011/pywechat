@@ -21,6 +21,7 @@
 pip install pywechat127==1.8.2
 ```
 <br>
+
 ```
 pip install --upgrade pywechat127
 ```
