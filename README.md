@@ -19,8 +19,8 @@
 #### 新版本:1.8.2
 ```
 pip install pywechat127==1.8.2
+```
 <br>
-
 ```
 pip install --upgrade pywechat127
 ```
@@ -32,6 +32,7 @@ pip install --upgrade pywechat127
 from pywechat.WechatTools import Tools
 Tools.set_wechat_as_environ_path()
 ```
+
 #### 效果演示:
 ![Alt text](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/演示效果.gif)
 <br>
