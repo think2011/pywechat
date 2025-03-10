@@ -8,17 +8,24 @@
 ### pywechat项目结构：
 ![image](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/pywechat架构图.png)
 <br>
+  注意，新版本pywechat内所有模块下的类或函数均可直接从pywechat导入，即
+   ```
+  from pywechat impot xx(class)
+  from pywechat import xx(function)
+  ```
+<br>
 
-##   该项目内的函数与方法名称与PC微信英文版各界面与功能英文翻译一致。其中pywechat的open_wechat函数无论微信是否打开，是否登录(需先前登录过,手机端勾选自动登录)均可正常打开微信,你只需要将微信WeChat.exe文件地址传入pywechat各个函数，或添加到windows用户环境变量中即可开启微信自动化之旅。🗺️🗺️
+##   该项目内的函数与方法名称与PC微信英文版各界面与功能英文翻译一致。
+##  你只需要将微信WeChat.exe文件地址传入pywechat各个函数，或直接添加到windows用户环境变量中即可开启微信自动化之旅。🗺️🗺️
 ### 注:pywechat最新版本已内置自动添加WeChat.exe为windows用户环境变量的方法。
-这里强烈建议将微信Wechat.exe文件添加到windows系统环境变量中，因为pywechat默认使用windows环境变量中的Wechat.exe路径启动微信,此时调用其中的每个方法与函数无需传入wechat_path参数即可自动化操作微信。
+这里建议将微信Wechat.exe文件路径添加到windows系统环境变量中，因为pywechat默认使用windows环境变量中的Wechat.exe路径启动微信,此时调用其中的每个方法与函数无需传入wechat_path参数即可自动化操作微信。
 
 <br>
 
 ### 获取方法:
-#### 最新版本:1.8.3
+#### 最新版本:1.8.5
 ```
-pip install pywechat127==1.8.3
+pip install pywechat127==1.8.5
 ```
 <br>
 
