@@ -113,6 +113,7 @@ Files.send_files_to_friend(friend='文件传输助手',folder_path=r"E:\OneDrive
 
 ![Alt text](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/Ai接入实例.png)
 
-##### 检查新消息
+##### 检查新消息：
 
-![image](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/check_new_message.gif)
+![Alt text](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/check_new_message.gif)
+
