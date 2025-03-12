@@ -23,9 +23,9 @@
 <br>
 
 ### 获取方法:
-#### 最新版本:1.8.5
+#### 最新版本:1.8.6
 ```
-pip install pywechat127==1.8.5
+pip install pywechat127==1.8.6
 ```
 <br>
 
@@ -113,6 +113,14 @@ Files.send_files_to_friend(friend='文件传输助手',folder_path=r"E:\OneDrive
 
 ![Alt text](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/Ai接入实例.png)
 
-##### 检查新消息：
+### 检查新消息示例
+<br>
+
+```
+from pywechat import check_new_message
+print(check_new_message())
+```
+
+##### 检查新消息效果：
 
 ![Alt text](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/check_new_message.gif)
