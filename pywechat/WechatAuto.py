@@ -367,7 +367,7 @@ class Messages():
     @staticmethod
     def check_new_message(duration:str=None,wechat_path:str=None,close_wechat:bool=True):
         '''
-        该函数用来查看新消息,若你传入了duration参数,那么可以用来监听新消息\n
+        该方法用来查看新消息,若你传入了duration参数,那么可以用来监听新消息\n
         注意,使用该功能需要开启文件传输助手功能,因为实际使用时需要切换聊天界面至文件传输助手\n
         否则当前聊天界面内的新消息无法监控\n
         当你传入duration后如出现偶尔停顿此为正常等待机制:每遍历一次消息列表停顿一小段时间等待新消息\n
@@ -380,9 +380,6 @@ class Messages():
             close_wechat:\t任务结束后是否关闭微信,默认关闭\n
         '''
         #先遍历消息列表查找是否存在新消息,然后在遍历一遍消息列表,点击每个
-        newMessageTips=[]#新消息提示(好友在会话列表的ui中会显示''2条新消息这样的字样
-        names=[]#存储消息列表中查找到的发送新消息的好友
-        nums=[]#消息条数
         def get_message_content(name,number):
             voice_call_button=main_window.child_window(**Buttons.VoiceCallButton)#语音聊天按钮
             video_call_button=main_window.child_window(**Buttons.VideoCallButton)#视频聊天按钮
@@ -400,27 +397,32 @@ class Messages():
                 return {'名称':name,'新消息条数':number,'类型':type,'消息':messages}
             else:#都没有是公众号
                 type='公众号'
-                return {'名称':name,'新消息条数':number,'类型':type}     
-        def get_name(string):#使用正则表达式匹配'好友名称8条新消息'这样的字符串中的好友名称'
-            if '已置顶' in string:
-                string=string.replace('已置顶','')
-            pattern=r'\d+条新消息'         
-            new_string = re.sub(pattern, '', string)
-            return new_string
-        def record():
+                return {'名称':name,'新消息条数':number,'类型':type}
+        def record(messageList):
+            names=[]#存储消息列表中查找到的发送新消息的好友
+            nums=[]#消息条数
+            newMessageTips=[]#新消息提示(好友在会话列表的ui中会显示''2条新消息这样的字样
             #遍历一遍会话列表内的所有成员，获取他们的名称和新消息条数
-            newMessageTips.extend([name.window_text() for name in messageList.items() if '条新消息' in name.window_text()])
-            names.extend([get_name(tip) for tip in newMessageTips])
-            nums.extend([int(re.findall(r'\d+',tip)[0]) for tip in newMessageTips])
+            #newMessagefriends为会话列表(List)中所有含有新消息的ListItem
+            newMessagefriends=[friend for friend in messageList.items() if '条新消息' in friend.window_text()]
+            #newMessageTips为newMessagefriends中每个元素的文本:['测试3655条新消息','一家人已置顶20条新消息']这样的字符串列表
+            newMessageTips.extend([friend.window_text() for friend in newMessagefriends])
+            #会话列表中的好友头像是个按钮，其名称为‘备注名’+按钮，通过这个按钮的名称直接获取好友名字
+            names.extend([friend.descendants(control_type='Button')[0].window_text() for friend in newMessagefriends])
+            #此时newMessageTips变为：['5条新消息','20条新消息']
+            filtered_Tips=[friend.replace(name,'') for name,friend in zip(names,newMessageTips)]
+            nums.extend([int(re.findall(r'\d+',tip)[0]) for tip in filtered_Tips]) 
+            return dict(zip(names,nums)) 
         main_window=Tools.open_dialog_window(friend='文件传输助手',wechat_path=wechat_path,is_maximize=True)[1]
         messageList=main_window.child_window(**Main_window.MessageList)
         total_num=len(messageList.children())
         if not duration:#没有持续时间,直接遍历一遍结束。
             if total_num<=12:#聊天列表不足12人以上,没有滑块，原地等待即可
-                record()
-                if nums:
+                dic=record(messageList)
+                if dic:
+                    print(dic)
                     newMessages=[]
-                    for key,value in dict(zip(names,nums)).items():         
+                    for key,value in dic.items():         
                         Tools.find_friend_in_MessageList(friend=key,search_pages=1)
                         newMessages.append(get_message_content(key,value))
                     if close_wechat:
@@ -439,13 +441,13 @@ class Messages():
                 pyautogui.press('Home')#按下Home健确保从顶部开始
                 search_pages=1
                 while messageList.items()[-1].window_text()!=lastmemberName:
-                    record()
+                    dic=record(messageList)#{}'好友1':5}#好友名称及新消息个数构成的字典
                     pyautogui.press('pagedown',_pause=False)
                     search_pages+=1
                 pyautogui.press('Home')
-                if nums:
+                if dic:
                     newMessages=[]
-                    for key,value in dict(zip(names,nums)).items():         
+                    for key,value in dic.items():         
                         Tools.find_friend_in_MessageList(friend=key,search_pages=1)
                         newMessages.append(get_message_content(key,value))
                     if close_wechat:
@@ -463,10 +465,10 @@ class Messages():
                     raise TimeNotCorrectError
                 start_time=time.time()
                 while time.time()-start_time<=duration:
-                    record()
-                if nums:
+                    dic=record(messageList)
+                if dic:
                     newMessages=[]
-                    for key,value in dict(zip(names,nums)).items():         
+                    for key,value in dic.items():         
                         Tools.find_friend_in_MessageList(friend=key,search_pages=1)
                         newMessages.append(get_message_content(key,value))
                     if close_wechat:
@@ -483,7 +485,7 @@ class Messages():
                 pyautogui.press('End')
                 lastmemberName=messageList.items()[-1].window_text()
                 pyautogui.press('Home')#按下Home健确保从顶部开始
-                if 's' in duration:
+                if 's' in duration:#每遍历完一次消息列表停一会儿
                     wait_time=1
                 if 'min' in duration:
                     wait_time=5
@@ -502,9 +504,9 @@ class Messages():
                         search_pages+=1
                     pyautogui.press('Home')
                     time.sleep(wait_time)
-                if nums:
+                if dic:
                     newMessages=[]
-                    for key,value in dict(zip(names,nums)).items():         
+                    for key,value in dic.items():         
                         Tools.find_friend_in_MessageList(friend=key,search_pages=1)
                         newMessages.append(get_message_content(key,value))
                     if close_wechat:
@@ -514,7 +516,7 @@ class Messages():
                 if close_wechat:
                     main_window.close()
                 return '未查找到新消息'
-    
+        
 class Files():
     @staticmethod
     def send_file_to_friend(friend:str,file_path:str,with_messages:bool=False,messages:list=[],messages_first:bool=False,delay:float=1,tickle:bool=False,search_pages:int=5,wechat_path:str=None,is_maximize:bool=True,close_wechat:bool=True):
@@ -8415,9 +8417,6 @@ def check_new_message(duration:str=None,wechat_path:str=None,close_wechat:bool=T
         close_wechat:\t任务结束后是否关闭微信,默认关闭\n
     '''
     #先遍历消息列表查找是否存在新消息,然后在遍历一遍消息列表,点击每个
-    newMessageTips=[]#新消息提示(好友在会话列表的ui中会显示''2条新消息这样的字样
-    names=[]#存储消息列表中查找到的发送新消息的好友
-    nums=[]#消息条数
     def get_message_content(name,number):
         voice_call_button=main_window.child_window(**Buttons.VoiceCallButton)#语音聊天按钮
         video_call_button=main_window.child_window(**Buttons.VideoCallButton)#视频聊天按钮
@@ -8435,27 +8434,32 @@ def check_new_message(duration:str=None,wechat_path:str=None,close_wechat:bool=T
             return {'名称':name,'新消息条数':number,'类型':type,'消息':messages}
         else:#都没有是公众号
             type='公众号'
-            return {'名称':name,'新消息条数':number,'类型':type}     
-    def get_name(string):#使用正则表达式匹配'好友名称8条新消息'这样的字符串中的好友名称'
-        if '已置顶' in string:
-            string=string.replace('已置顶','')
-        pattern=r'\d+条新消息'         
-        new_string = re.sub(pattern, '', string)
-        return new_string
-    def record():
+            return {'名称':name,'新消息条数':number,'类型':type}
+    def record(messageList):
+        names=[]#存储消息列表中查找到的发送新消息的好友
+        nums=[]#消息条数
+        newMessageTips=[]#新消息提示(好友在会话列表的ui中会显示''2条新消息这样的字样
         #遍历一遍会话列表内的所有成员，获取他们的名称和新消息条数
-        newMessageTips.extend([name.window_text() for name in messageList.items() if '条新消息' in name.window_text()])
-        names.extend([get_name(tip) for tip in newMessageTips])
-        nums.extend([int(re.findall(r'\d+',tip)[0]) for tip in newMessageTips])
+        #newMessagefriends为会话列表(List)中所有含有新消息的ListItem
+        newMessagefriends=[friend for friend in messageList.items() if '条新消息' in friend.window_text()]
+        #newMessageTips为newMessagefriends中每个元素的文本:['测试3655条新消息','一家人已置顶20条新消息']这样的字符串列表
+        newMessageTips.extend([friend.window_text() for friend in newMessagefriends])
+        #会话列表中的好友头像是个按钮，其名称为‘备注名’+按钮，通过这个按钮的名称直接获取好友名字
+        names.extend([friend.descendants(control_type='Button')[0].window_text() for friend in newMessagefriends])
+        #此时newMessageTips变为：['5条新消息','20条新消息']
+        filtered_Tips=[friend.replace(name,'') for name,friend in zip(names,newMessageTips)]
+        nums.extend([int(re.findall(r'\d+',tip)[0]) for tip in filtered_Tips]) 
+        return dict(zip(names,nums)) 
     main_window=Tools.open_dialog_window(friend='文件传输助手',wechat_path=wechat_path,is_maximize=True)[1]
     messageList=main_window.child_window(**Main_window.MessageList)
     total_num=len(messageList.children())
     if not duration:#没有持续时间,直接遍历一遍结束。
         if total_num<=12:#聊天列表不足12人以上,没有滑块，原地等待即可
-            record()
-            if nums:
+            dic=record(messageList)
+            if dic:
+                print(dic)
                 newMessages=[]
-                for key,value in dict(zip(names,nums)).items():         
+                for key,value in dic.items():         
                     Tools.find_friend_in_MessageList(friend=key,search_pages=1)
                     newMessages.append(get_message_content(key,value))
                 if close_wechat:
@@ -8474,13 +8478,13 @@ def check_new_message(duration:str=None,wechat_path:str=None,close_wechat:bool=T
             pyautogui.press('Home')#按下Home健确保从顶部开始
             search_pages=1
             while messageList.items()[-1].window_text()!=lastmemberName:
-                record()
+                dic=record(messageList)#{}'好友1':5}#好友名称及新消息个数构成的字典
                 pyautogui.press('pagedown',_pause=False)
                 search_pages+=1
             pyautogui.press('Home')
-            if nums:
+            if dic:
                 newMessages=[]
-                for key,value in dict(zip(names,nums)).items():         
+                for key,value in dic.items():         
                     Tools.find_friend_in_MessageList(friend=key,search_pages=1)
                     newMessages.append(get_message_content(key,value))
                 if close_wechat:
@@ -8498,10 +8502,10 @@ def check_new_message(duration:str=None,wechat_path:str=None,close_wechat:bool=T
                 raise TimeNotCorrectError
             start_time=time.time()
             while time.time()-start_time<=duration:
-                record()
-            if nums:
+                dic=record(messageList)
+            if dic:
                 newMessages=[]
-                for key,value in dict(zip(names,nums)).items():         
+                for key,value in dic.items():         
                     Tools.find_friend_in_MessageList(friend=key,search_pages=1)
                     newMessages.append(get_message_content(key,value))
                 if close_wechat:
@@ -8537,9 +8541,9 @@ def check_new_message(duration:str=None,wechat_path:str=None,close_wechat:bool=T
                     search_pages+=1
                 pyautogui.press('Home')
                 time.sleep(wait_time)
-            if nums:
+            if dic:
                 newMessages=[]
-                for key,value in dict(zip(names,nums)).items():         
+                for key,value in dic.items():         
                     Tools.find_friend_in_MessageList(friend=key,search_pages=1)
                     newMessages.append(get_message_content(key,value))
                 if close_wechat:
