@@ -379,6 +379,9 @@ class Messages():
             is_maximize:\t微信界面是否全屏,默认全屏。\n
             close_wechat:\t任务结束后是否关闭微信,默认关闭\n
         '''
+        names=[]#存储消息列表中查找到的发送新消息的好友
+        nums=[]#消息条数
+        newMessageTips=[]#新消息提示(好友在会话列表的ui中会显示''2条新消息这样的字样
         #先遍历消息列表查找是否存在新消息,然后在遍历一遍消息列表,点击每个
         def get_message_content(name,number):
             voice_call_button=main_window.child_window(**Buttons.VoiceCallButton)#语音聊天按钮
@@ -399,9 +402,6 @@ class Messages():
                 type='公众号'
                 return {'名称':name,'新消息条数':number,'类型':type}
         def record(messageList):
-            names=[]#存储消息列表中查找到的发送新消息的好友
-            nums=[]#消息条数
-            newMessageTips=[]#新消息提示(好友在会话列表的ui中会显示''2条新消息这样的字样
             #遍历一遍会话列表内的所有成员，获取他们的名称和新消息条数
             #newMessagefriends为会话列表(List)中所有含有新消息的ListItem
             newMessagefriends=[friend for friend in messageList.items() if '条新消息' in friend.window_text()]
@@ -420,7 +420,6 @@ class Messages():
             if total_num<=12:#聊天列表不足12人以上,没有滑块，原地等待即可
                 dic=record(messageList)
                 if dic:
-                    print(dic)
                     newMessages=[]
                     for key,value in dic.items():         
                         Tools.find_friend_in_MessageList(friend=key,search_pages=1)
@@ -8416,6 +8415,9 @@ def check_new_message(duration:str=None,wechat_path:str=None,close_wechat:bool=T
         is_maximize:\t微信界面是否全屏,默认全屏。\n
         close_wechat:\t任务结束后是否关闭微信,默认关闭\n
     '''
+    names=[]#存储消息列表中查找到的发送新消息的好友
+    nums=[]#消息条数
+    newMessageTips=[]#新消息提示(好友在会话列表的ui中会显示''2条新消息这样的字样
     #先遍历消息列表查找是否存在新消息,然后在遍历一遍消息列表,点击每个
     def get_message_content(name,number):
         voice_call_button=main_window.child_window(**Buttons.VoiceCallButton)#语音聊天按钮
@@ -8436,9 +8438,6 @@ def check_new_message(duration:str=None,wechat_path:str=None,close_wechat:bool=T
             type='公众号'
             return {'名称':name,'新消息条数':number,'类型':type}
     def record(messageList):
-        names=[]#存储消息列表中查找到的发送新消息的好友
-        nums=[]#消息条数
-        newMessageTips=[]#新消息提示(好友在会话列表的ui中会显示''2条新消息这样的字样
         #遍历一遍会话列表内的所有成员，获取他们的名称和新消息条数
         #newMessagefriends为会话列表(List)中所有含有新消息的ListItem
         newMessagefriends=[friend for friend in messageList.items() if '条新消息' in friend.window_text()]
@@ -8457,7 +8456,6 @@ def check_new_message(duration:str=None,wechat_path:str=None,close_wechat:bool=T
         if total_num<=12:#聊天列表不足12人以上,没有滑块，原地等待即可
             dic=record(messageList)
             if dic:
-                print(dic)
                 newMessages=[]
                 for key,value in dic.items():         
                     Tools.find_friend_in_MessageList(friend=key,search_pages=1)
