@@ -59,7 +59,7 @@ Tools.set_wechat_as_environ_path()
 ##### GroupSettings: 涵盖了PC微信针对某个群聊的全部操作的方法。
 ##### Contacts: 获取3种类型通讯录好友的备注与昵称包括:微信好友,企业号微信,群聊名称与人数，数据返回格式为json。
 ##### Call: 给某个好友打视频或语音电话。
-##### AutoReply:自动接应微信视频或语音电话。
+##### AutoReply:自动接听微信视频或语音电话,自动回复指定好友消息,自动回复所有好友消息。
 #### 函数:该模块内所有函数与方法一致。  
 <br>
 
@@ -70,7 +70,7 @@ Tools.set_wechat_as_environ_path()
 <br>
 
 ### 使用示例:
-#### (注意，微信WeChat.exe路径已添加至windows系统环境变量,故以下方法或函数无需传入wechat_path这一参数)
+#### (注意，微信WeChat.exe路径已添加至windows系统环境变量,故当微信还未登录时,以下方法或函数无需传入wechat_path这一参数)
 #### 给某个好友发送多条信息：
 ```
 from pywechat.WechatAuto import Messages
@@ -123,3 +123,6 @@ print(check_new_message())
 ##### 检查新消息效果：
 
 ![Alt text](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/check_new_message.gif)
+
+## 注意:
+请勿将pywechat用作任何非法商业用途,否则一切后果由使用者自行承担！
