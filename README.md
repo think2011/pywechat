@@ -1,6 +1,6 @@
 # pywechat🥇
 ![image](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/introduction.jpg)
-## 🍬🍬pywechat是一个基于pywinauto实现的Windows系统下PC微信自动化的Python项目。它可以帮助用户实现微信的一系列自动化操作，包括发送消息、发送文件、自动回复以及针对微信好友的所有操作，针对微信群聊的所有操作,支持单线程多个任务轮流进行,完全模拟真人操作微信。
+## 🍬🍬pywechat是一个基于pywinauto实现的Windows系统下PC微信自动化的Python项目。基本实现了PC微信内置的所有功能,支持单线程多任务轮流进行,完全模拟真人操作微信!!
 
 ### 微信版本:3.9.12.17
 ### 操作系统:🪟windows 10 🪟windows 11
@@ -16,9 +16,9 @@
 <br>
 
 ##   该项目内的函数与方法名称与PC微信英文版各界面与功能英文翻译一致。
-##  你只需要将微信WeChat.exe文件地址传入pywechat各个函数，或直接添加到windows用户环境变量中即可开启微信自动化之旅。🗺️🗺️
+##  你只需要将微信WeChat.exe文件地址传入pywechat各个函数，或直接添加到windows用户环境变量中即可实现从自动登录到自动回复的一系列微信自动化之旅。🗺️🗺️
 ### 注:pywechat最新版本已内置自动添加WeChat.exe为windows用户环境变量的方法。
-这里建议将微信Wechat.exe文件路径添加到windows系统环境变量中，因为pywechat默认使用windows环境变量中的Wechat.exe路径启动微信,此时调用其中的每个方法与函数无需传入wechat_path参数即可自动化操作微信。
+这里建议将微信Wechat.exe文件路径添加到windows系统环境变量中，当微信未启动时pywechat默认使用windows环境变量中的Wechat.exe路径启动微信,此时调用其中的每个方法与函数无需传入wechat_path参数即可自动化操作微信。
 
 <br>
 
@@ -49,7 +49,7 @@ Tools.set_wechat_as_environ_path()
 #### 模块包括:
 #### Tools:关于PC微信的一些工具,包括3个关于PC微信程序的方法和10个打开PC微信内各个界面的open系列方法。
 #### API:打开指定微信小程序，指定公众号,打开视频号的功能，若有其他开发者想自动化操作上述程序可调用此API。
-#### 函数:该模块内所有函数为上述模块内的所有方法。
+#### 函数:该模块内所有函数与方法一致。
 <br>
 
 ### WechatAuto🛏️🛏️
@@ -61,13 +61,13 @@ Tools.set_wechat_as_environ_path()
 ##### Contacts: 获取3种类型通讯录好友的备注与昵称包括:微信好友,企业号微信,群聊名称与人数，数据返回格式为json。
 ##### Call: 给某个好友打视频或语音电话。
 ##### AutoReply:自动接应微信视频或语音电话。
-#### 函数:该模块内所有函数为上述模块内的所有方法。  
+#### 函数:该模块内所有函数与方法一致。  
 <br>
 
 ### WinSettings🔹🔹
 #### 模块包括：
 #### Systemsettings:该模块中提供了7个修改windows系统设置和3个判断文件类型的方法。
-#### 函数：该模块内所有函数为上述模块内的所有方法。
+#### 函数：该模块内所有函数与方法一致。
 <br>
 
 ### 使用示例:
