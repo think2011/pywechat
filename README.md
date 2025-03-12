@@ -125,4 +125,4 @@ print(check_new_message())
 ![Alt text](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/check_new_message.gif)
 
 ## 注意:
-请勿将pywechat用作任何非法商业用途,否则一切后果由使用者自行承担！
+请勿将pywechat用于任何非法商业活动,因此造成的一切后果由使用者自行承担！
