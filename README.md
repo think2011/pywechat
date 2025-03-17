@@ -22,9 +22,9 @@
 <br>
 
 ### 获取方法:
-#### 最新版本:1.8.7
+#### 最新版本:1.8.8
 ```
-pip install pywechat127==1.8.7
+pip install pywechat127==1.8.8
 ```
 <br>
 
@@ -124,5 +124,6 @@ print(check_new_message())
 
 ![Alt text](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/check_new_message.gif)
 
+##### 若你开启了语音自动转消息功能后,新消息中含有语音消息的话,可以将其转换结果一并记录。（1.8.8版本支持此功能）
 ## 注意:
 请勿将pywechat用于任何非法商业活动,因此造成的一切后果由使用者自行承担！
