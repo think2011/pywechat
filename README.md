@@ -70,6 +70,13 @@ Tools.set_wechat_as_environ_path()
 <br>
 
 ### 使用示例:
+#### 所有自动化操作只需两行代码即可实现，即：
+```
+from pywechat import xxx
+xxx
+```
+<br>
+
 #### (注意，微信WeChat.exe路径已添加至windows系统环境变量,故当微信还未登录时,以下方法或函数无需传入wechat_path这一参数)
 #### 给某个好友发送多条信息：
 ```
@@ -114,7 +121,6 @@ Files.send_files_to_friend(friend='文件传输助手',folder_path=r"E:\OneDrive
 
 ### 检查新消息示例
 <br>
-
 ```
 from pywechat import check_new_message
 print(check_new_message())
@@ -126,4 +132,4 @@ print(check_new_message())
 
 ##### 若你开启了语音自动转消息功能后,新消息中含有语音消息的话,可以将其转换结果一并记录。（1.8.8版本支持此功能）
 ## 注意:
-请勿将pywechat用于任何非法商业活动,因此造成的一切后果由使用者自行承担！
+👎👎请勿将pywechat用于任何非法商业活动,因此造成的一切后果由使用者自行承担！ 
