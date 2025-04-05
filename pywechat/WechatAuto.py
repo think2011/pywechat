@@ -2830,6 +2830,17 @@ class FriendSettings():
             is_maximize:微信界面是否全屏,默认全屏。\n
             close_wechat:任务结束后是否关闭微信,默认关闭\n'
         '''
+        msg_in_chatbox = []
+        main_window=Tools.open_wechat(wechat_path=wechat_path,is_maximize=is_maximize)
+        msg_list=main_window.child_window(**Main_window.FriendChatList)
+        for msg in msg_list.items():
+            latest_msg = msg.window_text()
+            try:
+                sender = msg.descendants(control_type="Button")[0].window_text()
+            except:
+                continue
+            msg_in_chatbox.append([latest_msg, sender])
+
         if capture_screen and folder_path:
             folder_path=re.sub(r'(?<!\\)\\(?!\\)',r'\\\\',folder_path)
             if not Systemsettings.is_dirctory(folder_path):
@@ -2861,7 +2872,12 @@ class FriendSettings():
                         content.append(texts[2])
             chat_history=list(zip(who,time,content))
             return chat_history
-        pages=number//5+2
+
+        if len(msg_in_chatbox) <= 5:
+            pages=1
+        else:
+            pages=number//5+2
+
         chat_history_window=Tools.open_chat_history(friend=friend,wechat_path=wechat_path,is_maximize=is_maximize,close_wechat=close_wechat,search_pages=search_pages)[0]
         rec=chat_history_window.rectangle()
         mouse.click(coords=(rec.right-10,rec.bottom-10))
@@ -3481,6 +3497,17 @@ class GroupSettings():
             is_maximize:微信界面是否全屏,默认全屏。\n
             close_wechat:任务结束后是否关闭微信,默认关闭\n'
         '''
+        msg_in_chatbox = []
+        main_window=Tools.open_wechat(wechat_path=wechat_path,is_maximize=is_maximize)
+        msg_list=main_window.child_window(**Main_window.FriendChatList)
+        for msg in msg_list.items():
+            latest_msg = msg.window_text()
+            try:
+                sender = msg.descendants(control_type="Button")[0].window_text()
+            except:
+                continue
+            msg_in_chatbox.append([latest_msg, sender])
+
         if capture_screen and folder_path:
             folder_path=re.sub(r'(?<!\\)\\(?!\\)',r'\\\\',folder_path)
             if not Systemsettings.is_dirctory(folder_path):
@@ -3512,7 +3539,10 @@ class GroupSettings():
                         content.append(texts[2])
             chat_history=list(zip(who,time,content))
             return chat_history
-        pages=number//5+2
+        if len(msg_in_chatbox) <= 5:
+            pages=1
+        else:
+            pages=number//5+2
         chat_history_window=Tools.open_chat_history(friend=friend,wechat_path=wechat_path,is_maximize=is_maximize,close_wechat=close_wechat,search_pages=search_pages)[0]
         rec=chat_history_window.rectangle()
         mouse.click(coords=(rec.right-10,rec.bottom-10))
@@ -8392,6 +8422,17 @@ def get_chat_history(friend:str,number:int=10,capture_screen:bool=False,folder_p
         is_maximize:微信界面是否全屏,默认全屏。\n
         close_wechat:任务结束后是否关闭微信,默认关闭\n'
     '''
+    msg_in_chatbox = []
+    main_window=Tools.open_wechat(wechat_path=wechat_path,is_maximize=is_maximize)
+    msg_list=main_window.child_window(**Main_window.FriendChatList)
+    for msg in msg_list.items():
+        latest_msg = msg.window_text()
+        try:
+            sender = msg.descendants(control_type="Button")[0].window_text()
+        except:
+            continue
+        msg_in_chatbox.append([latest_msg, sender])
+
     if capture_screen and folder_path:
         folder_path=re.sub(r'(?<!\\)\\(?!\\)',r'\\\\',folder_path)
         if not Systemsettings.is_dirctory(folder_path):
@@ -8423,7 +8464,10 @@ def get_chat_history(friend:str,number:int=10,capture_screen:bool=False,folder_p
                     content.append(texts[2])
         chat_history=list(zip(who,time,content))
         return chat_history
-    pages=number//5+2
+    if len(msg_in_chatbox) <= 5:
+        pages=1
+    else:
+        pages=number//5+2
     chat_history_window=Tools.open_chat_history(friend=friend,wechat_path=wechat_path,is_maximize=is_maximize,close_wechat=close_wechat,search_pages=search_pages)[0]
     rec=chat_history_window.rectangle()
     mouse.click(coords=(rec.right-10,rec.bottom-10))
