@@ -121,6 +121,7 @@ Files.send_files_to_friend(friend='文件传输助手',folder_path=r"E:\OneDrive
 
 ### 检查新消息示例
 <br>
+
 ```
 from pywechat import check_new_message
 print(check_new_message())
