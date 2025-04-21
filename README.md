@@ -10,7 +10,7 @@
 <br>
  ### 注意，新版本pywechat内所有模块下的类或函数均可直接从pywechat导入，即
    ```
-  from pywechat impot xx(class)
+  from pywechat import xx(class)
   from pywechat import xx(function)
   ```
 <br>
