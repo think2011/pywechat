@@ -1,10 +1,12 @@
 # pywechat🥇
 ![image](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/introduction.jpg)
-## 🍬🍬pywechat是一个基于pywinauto实现的Windows系统下PC微信自动化的Python项目。基本实现了PC微信内置的所有功能,支持单线程多任务轮流进行,完全模拟真人操作微信!!
+## 🍬🍬全网最强微信RPA!
+### pywechat是一个基于pywinauto实现的Windows系统下PC微信自动化的Python项目。基本实现了PC微信内置的所有功能,支持单线程多任务轮流进行,完全模拟真人操作微信!!
 
 ### 微信版本:3.9.12.xx
 ### 操作系统:🪟windows 10 🪟windows 11
 ### python版本🐍:3.x
+### 支持语言:简体中文,English,繁体中文(采集中,目前不支持)
 ### pywechat项目结构：
 ![image](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/pywechat架构图.png)
 <br>
@@ -22,9 +24,9 @@
 <br>
 
 ### 获取方法:
-#### 最新版本:1.8.8
+#### 最新版本:1.9.0
 ```
-pip install pywechat127==1.8.8
+pip install pywechat127==1.9.0
 ```
 <br>
 
