@@ -6,7 +6,7 @@
 ### 微信版本:3.9.12.xx
 ### 操作系统:🪟windows 10 🪟windows 11
 ### python版本🐍:3.x
-### 支持语言:简体中文,English,繁体中文(采集中,目前不支持)
+### 支持语言:简体中文,English,繁体中文
 ### pywechat项目结构：
 ![image](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/pywechat架构图.png)
 <br>
