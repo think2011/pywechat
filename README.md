@@ -10,23 +10,21 @@
 ### pywechat项目结构：
 ![image](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/pywechat架构图.png)
 <br>
- ### 注意，新版本pywechat内所有模块下的类或函数均可直接从pywechat导入，即
+ ## 新版本pywechat内所有模块下的类或函数均可直接从pywechat导入，使用两行代码即可实现从自动登录到自动回复的一系列微信自动化之旅。🗺️🗺️
    ```
   from pywechat import xx(class)
   from pywechat import xx(function)
   ```
 <br>
 
-##  你只需要将微信WeChat.exe文件地址传入pywechat各个函数，或直接添加到windows用户环境变量中即可实现从自动登录到自动回复的一系列微信自动化之旅。🗺️🗺️
-### 注:pywechat最新版本已内置自动添加WeChat.exe为windows用户环境变量的方法。
-这里建议将微信Wechat.exe文件路径添加到windows系统环境变量中，当微信未启动时pywechat默认使用windows环境变量中的Wechat.exe路径启动微信,此时调用其中的每个方法与函数无需传入wechat_path参数即可自动化操作微信。
+### 注意:针对未登录的情况,pywechat最新版本会通过查询环境变量,注册表等一些方法尽可能地自动找到微信路径,除非你的微信路径手动修改过,发生了变动的话可能需要将微信路径加入到环境变量或手动传入
 
 <br>
 
 ### 获取方法:
-#### 最新版本:1.9.1
+#### 最新版本:1.9.2
 ```
-pip install pywechat127==1.9.1
+pip install pywechat127==1.9.2
 ```
 <br>
 
@@ -48,7 +46,7 @@ Tools.set_wechat_as_environ_path()
 
 ### WechatTools🌪️🌪️
 #### 模块包括:
-#### Tools:关于PC微信的一些工具,包括3个关于PC微信程序的方法和10个打开PC微信内各个界面的open系列方法。
+#### Tools:关于PC微信的一些工具,包括打开PC微信内各个界面的open系列方法。
 #### API:打开指定微信小程序，指定公众号,打开视频号的功能，若有其他开发者想自动化操作上述程序可调用此API。
 #### 函数:该模块内所有函数与方法一致。
 <br>
@@ -67,7 +65,7 @@ Tools.set_wechat_as_environ_path()
 
 ### WinSettings🔹🔹
 #### 模块包括：
-#### Systemsettings:该模块中提供了7个修改windows系统设置和3个判断文件类型的方法。
+#### Systemsettings:该模块中提供了一些修改windows系统设置的方法。
 #### 函数：该模块内所有函数与方法一致。
 <br>
 
@@ -80,6 +78,31 @@ xxx
 <br>
 
 #### (注意，微信WeChat.exe路径已添加至windows系统环境变量,故当微信还未登录时,以下方法或函数无需传入wechat_path这一参数)
+
+#### 监听某个群聊或好友的窗口(自动保存聊天文件)
+```
+from pywechat import listen_on_chat
+contents,senders,types=listen_on_chat(friend='测试群',duration='10min',folder_path=r"E:\Desktop\测试专用")
+print(contentes,senders,types)
+```
+#### 转发指定数量文件给n个好友
+ ```
+ #注意:微信转发消息单次上线为9,pywechat内转发消息,文件,链接,小程序等支持多个好友按9个为一组分批发送
+ from pywechat import forward_files
+ others=['路人甲','路人乙','路人丙','路人丁']
+ forward_files(friend='测试群',others=others,number=20)
+ ```
+#### 保存指定数量聊天文件到本地]
+```
+from pywechat import save_files
+folder_path=r'E:\Desktop\新建文件夹'
+save_files(friend='测试群',number=20,folder_path=folder_path)
+```
+#### 群聊内自动回复(被@时触发)
+```
+from pywechat import auto_reply_to_group
+auto_reply_to_group(group_name='测试群',duration='20min',content='我被@了',at_only=True,at_others=True)
+```
 #### 给某个好友发送多条信息：
 ```
 from pywechat.WechatAuto import Messages
