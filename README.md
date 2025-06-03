@@ -1,7 +1,7 @@
 # pywechat🥇
 ![image](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/introduction.jpg)
 ## 🍬🍬全网最强微信RPA!
-### pywechat是一个基于pywinauto实现的Windows系统下PC微信自动化的Python项目。基本实现了PC微信内置的所有功能,支持单线程多任务轮流进行,完全模拟真人操作微信!!
+### pywechat是一个基于pywinauto实现的Windows系统下PC微信自动化的Python项目。基本实现了PC微信内置的所有功能,支持单线程多任务轮流进行!!
 
 ### 微信版本:3.9.12.xx
 ### 操作系统:🪟windows 10 🪟windows 11
@@ -83,7 +83,7 @@ xxx
 ```
 from pywechat import listen_on_chat
 contents,senders,types=listen_on_chat(friend='测试群',duration='10min',folder_path=r"E:\Desktop\测试专用")
-print(contentes,senders,types)
+print(contents,senders,types)
 ```
 #### 转发指定数量文件给n个好友
  ```
