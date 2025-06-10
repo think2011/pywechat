@@ -22,9 +22,9 @@
 <br>
 
 ### 获取方法:
-#### 最新版本:1.9.4
+#### 最新版本:1.9.5
 ```
-pip install pywechat127==1.9.4
+pip install pywechat127==1.9.5
 ```
 <br>
 
