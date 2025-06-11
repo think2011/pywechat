@@ -82,7 +82,7 @@ xxx
 #### 监听某个群聊或好友的窗口(自动保存聊天文件)
 ```
 from pywechat import listen_on_chat
-contents,senders,types=listen_on_chat(friend='测试群',duration='10min',folder_path=r"E:\Desktop\测试专用")
+contents,senders,types=listen_on_chat(friend='测试群',duration='10min',save_file=True,file_folder=r"E:\Desktop\保存文件",save_photo=True,photo_folder=r"E:\Desktop\保存图片")
 print(contents,senders,types)
 ```
 #### 转发指定数量文件给n个好友
