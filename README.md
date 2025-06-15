@@ -8,7 +8,7 @@
 ### python版本🐍:3.x
 ### 支持语言:简体中文,English,繁体中文
 ### pywechat项目结构：
-![image](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/pywechat架构图.png)
+![image](https://github.com/Hello-Mr-Crab/pywechat/blob/main/pics/pywechat结构图.png)
 <br>
  ## 新版本pywechat内所有模块下的类或函数均可直接从pywechat导入，使用两行代码即可实现从自动登录到自动回复的一系列微信自动化之旅。🗺️🗺️
    ```
@@ -79,11 +79,21 @@ xxx
 
 #### (注意，微信WeChat.exe路径已添加至windows系统环境变量,故当微信还未登录时,以下方法或函数无需传入wechat_path这一参数)
 
-#### 监听某个群聊或好友的窗口(自动保存聊天文件)
+#### 监听某个群聊或好友的窗口(自动保存聊天文件与图片和视频)
 ```
 from pywechat import listen_on_chat
-contents,senders,types=listen_on_chat(friend='测试群',duration='10min',save_file=True,file_folder=r"E:\Desktop\保存文件",save_photo=True,photo_folder=r"E:\Desktop\保存图片")
+filesave_folder=r"E:\Desktop\保存文件"
+mediasave_folder=r"E:\Desktop\聊天图片与视频保存"
+contents,senders,types=listen_on_chat(friend='测试群',duration='10min',save_file=True,file_folder=filesave_folder,save_media=True,media_folder=mediasave_folder)
 print(contents,senders,types)
+```
+#### 监听整个会话列表内所有好友的新消息(自动保存聊天文件)
+```
+from pywechat import check_new_message
+filesave_folder=r"E:\Desktop\文件保存"
+newMessages=check_new_message(duration='5min',save_file=True,target_folder=filesave_folder)
+#newMessages是[{'好友名称':'路人甲','好友类型':'群聊,好友或公众号','新消息条数':xx,'消息内容':[],'消息类型':[]}]
+#格式的list[dict]
 ```
 #### 转发指定数量文件给n个好友
  ```
