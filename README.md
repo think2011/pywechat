@@ -95,6 +95,9 @@ newMessages=check_new_message(duration='5min',save_file=True,target_folder=files
 #newMessages是[{'好友名称':'路人甲','好友类型':'群聊,好友或公众号','新消息条数':xx,'消息内容':[],'消息类型':[]}]
 #格式的list[dict]
 ```
+##### 运行效果可查看
+https://blog.csdn.net/weixin_73953650/article/details/148619622?spm=1001.2014.3001.5501
+
 #### 转发指定数量文件给n个好友
  ```
  #注意:微信转发消息单次上线为9,pywechat内转发消息,文件,链接,小程序等支持多个好友按9个为一组分批发送
