@@ -5414,7 +5414,8 @@ class AutoReply():
         Systemsettings.close_listening_mode()
         if close_wechat:
             main_window.close()
-    
+
+    @staticmethod
     def auto_reply_to_group(group_name:str,duration:str,content:str,at_only:bool=True,maxReply:int=3,at_others:bool=True,save_chat_history:bool=False,capture_screen:bool=False,folder_path:str=None,search_pages:int=5,wechat_path:str=None,is_maximize:bool=True,close_wechat:bool=True)->(str|None):
         '''
         该方法用来实现自动回复某个群聊的消息,默认只有我在群聊内被别人@时才回复他,回复时默认@别人\n
