@@ -3255,7 +3255,7 @@ class GroupSettings():
         if messages:
             group_edit=main_window.child_window(**Main_window.CurrentChatWindow)
             group_edit.click_input()
-            for message in message:
+            for message in messages:
                 Systemsettings.copy_text_to_windowsclipboard(message)
                 pyautogui.hotkey('ctrl','v')
                 pyautogui.hotkey('alt','s',_pause=False)
@@ -8235,7 +8235,7 @@ def create_group_chat(friends:list[str],group_name:str=None,wechat_path:str=None
     time.sleep(10)
     if messages:
         group_edit=main_window.child_window(**Main_window.CurrentChatWindow)
-        for message in message:
+        for message in messages:
             Systemsettings.copy_text_to_windowsclipboard(message)
             pyautogui.hotkey('ctrl','v')
             pyautogui.hotkey('alt','s',_pause=False)
