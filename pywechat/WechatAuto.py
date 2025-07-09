@@ -110,7 +110,7 @@ pyautogui.FAILSAFE=False#防止鼠标在屏幕边缘处造成的误触
 
 class Messages():
     @staticmethod
-    def send_message_to_friend(friend:str,message:str,at:list[str]=[],at_all:bool=False,tickle:bool=False,search_pages:int=5,wechat_path:str=None,is_maximize:bool=True,close_wechat:bool=True)->None:
+    def send_message_to_friend(friend:str,message:str,at:list[str]=[],at_all:bool=False,tickle:bool=False,search_pages:int=5,wechat_path:str=None,is_maximize:bool=True,close_wechat:bool=True,delay:float=0.4)->None:
         '''
         该函数用于给单个好友或群聊发送单条信息\n
         Args:
@@ -156,10 +156,12 @@ class Messages():
         if len(message)<2000:
             Systemsettings.copy_text_to_windowsclipboard(message)
             pyautogui.hotkey('ctrl','v',_pause=False)
+            time.sleep(delay)
             pyautogui.hotkey('alt','s',_pause=False)
         elif len(message)>2000:
             Systemsettings.convert_long_text_to_txt(message)
             pyautogui.hotkey('ctrl','v',_pause=False)
+            time.sleep(delay)
             pyautogui.hotkey('alt','s',_pause=False)
             warn(message=f"微信消息字数上限为2000,超过2000字部分将被省略,该条长文本消息已为你转换为txt发送",category=LongTextWarning)    
         if tickle:
@@ -3223,7 +3225,7 @@ class GroupSettings():
             main_window.close()
 
     @staticmethod
-    def create_group_chat(friends:list[str],group_name:str=None,wechat_path:str=None,is_maximize:bool=True,messages:list=[str],close_wechat:bool=True):
+    def create_group_chat(friends:list[str],group_name:str=None,wechat_path:str=None,is_maximize:bool=True,messages:list=[str],close_wechat:bool=True,delay:float=0.4):
         '''
         该方法用来新建群聊\n
         Args:
@@ -3255,9 +3257,10 @@ class GroupSettings():
         if messages:
             group_edit=main_window.child_window(**Main_window.CurrentChatWindow)
             group_edit.click_input()
-            for message in message:
+            for message in messages:
                 Systemsettings.copy_text_to_windowsclipboard(message)
                 pyautogui.hotkey('ctrl','v')
+                time.sleep(delay)
                 pyautogui.hotkey('alt','s',_pause=False)
         if group_name:
             chat_message=main_window.child_window(**Buttons.ChatMessageButton)
@@ -5118,7 +5121,7 @@ class AutoReply():
             print(f'未接听到任何微信视频或语音电话')
 
     @staticmethod
-    def auto_reply_messages(content:str,duration:str,dontReplytoGroup:bool=False,max_pages:int=5,never_reply:list=[],scroll_delay:int=0,wechat_path:str=None,is_maximize:bool=True,close_wechat:bool=True)->None:
+    def auto_reply_messages(content:str,duration:str,dontReplytoGroup:bool=False,max_pages:int=5,never_reply:list=[],scroll_delay:int=0,wechat_path:str=None,is_maximize:bool=True,close_wechat:bool=True,delay:float=0.4)->None:
         '''
         该方法用来遍历会话列表查找新消息自动回复,最大回复数量=max_pages*(8~10)\n
         如果你不想回复某些好友,你可以临时将其设为消息免打扰,或传入\n
@@ -5182,6 +5185,7 @@ class AutoReply():
                 if who==current_chat.window_text() and latest_message!=initial_last_message:#不等于刚打开页面时的那条消息且发送者是对方
                     current_chat.click_input()
                     pyautogui.hotkey('ctrl','v',_pause=False)
+                    time.sleep(delay)
                     pyautogui.hotkey('alt','s',_pause=False)
                     responsed_friend.add(current_chat.window_text())
                     if scorllable:
@@ -5192,6 +5196,7 @@ class AutoReply():
                     if not dontReplytoGroup:
                         current_chat.click_input()
                         pyautogui.hotkey('ctrl','v',_pause=False)
+                        time.sleep(delay)
                         pyautogui.hotkey('alt','s',_pause=False)
                         responsed_friend.add(current_chat.window_text())
                         responsed_groups.add(current_chat.window_text())
@@ -5219,12 +5224,14 @@ class AutoReply():
                         current_chat=main_window.child_window(**Main_window.CurrentChatWindow)
                         current_chat.click_input()
                         pyautogui.hotkey('ctrl','v',_pause=False)
+                        time.sleep(delay)
                         pyautogui.hotkey('alt','s',_pause=False)
                         responsed_friend.add(name) 
                     if type=='群聊' and not dontReplytoGroup:
                             current_chat=main_window.child_window(**Main_window.CurrentChatWindow)
                             current_chat.click_input()
                             pyautogui.hotkey('ctrl','v',_pause=False)
+                            time.sleep(delay)
                             pyautogui.hotkey('alt','s',_pause=False)
                             responsed_friend.add(name)
                             responsed_groups.add(name)
@@ -5275,7 +5282,7 @@ class AutoReply():
             main_window.close()
 
     @staticmethod
-    def auto_reply_to_friend(friend:str,duration:str,content:str,save_chat_history:bool=False,capture_screen:bool=False,folder_path:str=None,search_pages:int=5,wechat_path:str=None,is_maximize:bool=True,close_wechat:bool=True)->(str|None):
+    def auto_reply_to_friend(friend:str,duration:str,content:str,save_chat_history:bool=False,capture_screen:bool=False,folder_path:str=None,search_pages:int=5,wechat_path:str=None,is_maximize:bool=True,close_wechat:bool=True,delay:float=0.4)->(str|None):
         '''
         该方法用来实现类似QQ的自动回复某个好友的消息\n
         Args:
@@ -5330,6 +5337,7 @@ class AutoReply():
                 if newMessage!=initial_last_message and who==friend:
                     edit_area.click_input()
                     pyautogui.hotkey('ctrl','v',_pause=False)
+                    time.sleep(delay)
                     pyautogui.hotkey('alt','s',_pause=False)
                     count+=1
             else:
@@ -5343,7 +5351,7 @@ class AutoReply():
             main_window.close()
 
     @staticmethod
-    def AI_auto_reply_to_friend(friend:str,duration:str,AI_engine,save_chat_history:bool=False,capture_screen:bool=False,folder_path:str=None,search_pages:int=5,wechat_path:str=None,is_maximize:bool=True,close_wechat:bool=True):
+    def AI_auto_reply_to_friend(friend:str,duration:str,AI_engine,save_chat_history:bool=False,capture_screen:bool=False,folder_path:str=None,search_pages:int=5,wechat_path:str=None,is_maximize:bool=True,close_wechat:bool=True,delay:float=0.4):
         '''
         该方法 用来接入AI大模型自动回复好友消息\n
         Args:
@@ -5396,6 +5404,7 @@ class AutoReply():
                         edit_area.click_input()
                         Systemsettings.copy_text_to_windowsclipboard(AI_engine(newMessage))#复制回复内容到剪贴板
                         pyautogui.hotkey('ctrl','v',_pause=False)
+                        time.sleep(delay)
                         pyautogui.hotkey('alt','s',_pause=False)
                         count+=1  
                 if type=='群聊':
@@ -5403,6 +5412,7 @@ class AutoReply():
                         edit_area.click_input()
                         Systemsettings.copy_text_to_windowsclipboard(AI_engine(newMessage))#复制回复内容到剪贴板
                         pyautogui.hotkey('ctrl','v',_pause=False)
+                        time.sleep(delay)
                         pyautogui.hotkey('alt','s',_pause=False)
                         count+=1
             else:
@@ -5414,8 +5424,9 @@ class AutoReply():
         Systemsettings.close_listening_mode()
         if close_wechat:
             main_window.close()
-    
-    def auto_reply_to_group(group_name:str,duration:str,content:str,at_only:bool=True,maxReply:int=3,at_others:bool=True,save_chat_history:bool=False,capture_screen:bool=False,folder_path:str=None,search_pages:int=5,wechat_path:str=None,is_maximize:bool=True,close_wechat:bool=True)->(str|None):
+
+    @staticmethod
+    def auto_reply_to_group(group_name:str,duration:str,content:str,at_only:bool=True,maxReply:int=3,at_others:bool=True,save_chat_history:bool=False,capture_screen:bool=False,folder_path:str=None,search_pages:int=5,wechat_path:str=None,is_maximize:bool=True,close_wechat:bool=True,delay:float=0.4)->(str|None):
         '''
         该方法用来实现自动回复某个群聊的消息,默认只有我在群聊内被别人@时才回复他,回复时默认@别人\n
         Args:
@@ -5447,6 +5458,7 @@ class AutoReply():
                     if at_others:
                         at_others(who)
                     pyautogui.hotkey('ctrl','v',_pause=False)
+                    time.sleep(delay)
                     pyautogui.hotkey('alt','s',_pause=False)
                 else:#消息中没有@我的字样不回复
                     pass
@@ -5455,6 +5467,7 @@ class AutoReply():
                     if at_others:
                         at_others(who)
                     pyautogui.hotkey('ctrl','v',_pause=False)
+                    time.sleep(delay)
                     pyautogui.hotkey('alt','s',_pause=False)
                 else:
                     pass
@@ -5512,7 +5525,7 @@ class AutoReply():
         if close_wechat:
             main_window.close()
 
-def send_message_to_friend(friend:str,message:str,at:list[str]=[],at_all:bool=False,tickle:bool=False,search_pages:int=5,wechat_path:str=None,is_maximize:bool=True,close_wechat:bool=True)->None:
+def send_message_to_friend(friend:str,message:str,at:list[str]=[],at_all:bool=False,tickle:bool=False,search_pages:int=5,wechat_path:str=None,is_maximize:bool=True,close_wechat:bool=True,delay:float=0.4)->None:
     '''
     该函数用于给单个好友或群聊发送单条信息\n
     Args:
@@ -5557,10 +5570,12 @@ def send_message_to_friend(friend:str,message:str,at:list[str]=[],at_all:bool=Fa
     if len(message)<2000:
         Systemsettings.copy_text_to_windowsclipboard(message)
         pyautogui.hotkey('ctrl','v',_pause=False)
+        time.sleep(delay)
         pyautogui.hotkey('alt','s',_pause=False)
     elif len(message)>2000:
         Systemsettings.convert_long_text_to_txt(message)
         pyautogui.hotkey('ctrl','v',_pause=False)
+        time.sleep(delay)
         pyautogui.hotkey('alt','s',_pause=False)
         warn(message=f"微信消息字数上限为2000,超过2000字部分将被省略,该条长文本消息已为你转换为txt发送",category=LongTextWarning)    
     if tickle:
@@ -8204,7 +8219,7 @@ def pin_group(group_name:str,state:str='open',search_pages:int=5,wechat_path=Non
     if close_wechat:
         main_window.close()
 
-def create_group_chat(friends:list[str],group_name:str=None,wechat_path:str=None,is_maximize:bool=True,messages:list=[str],close_wechat:bool=True)->None:
+def create_group_chat(friends:list[str],group_name:str=None,wechat_path:str=None,is_maximize:bool=True,messages:list=[str],close_wechat:bool=True,delay:float=0.4)->None:
     '''
     该函数用来新建群聊\n
     Args:
@@ -8235,9 +8250,10 @@ def create_group_chat(friends:list[str],group_name:str=None,wechat_path:str=None
     time.sleep(10)
     if messages:
         group_edit=main_window.child_window(**Main_window.CurrentChatWindow)
-        for message in message:
+        for message in messages:
             Systemsettings.copy_text_to_windowsclipboard(message)
             pyautogui.hotkey('ctrl','v')
+            time.sleep(delay)
             pyautogui.hotkey('alt','s',_pause=False)
     if group_name:
         chat_message=main_window.child_window(**Buttons.ChatMessageButton)
@@ -8906,7 +8922,7 @@ def edit_group_notice(group_name:str,content:str,search_pages:int=5,wechat_path:
             if close_wechat:
                 main_window.close()
 
-def auto_reply_to_friend(friend:str,duration:str,content:str,save_chat_history:bool=False,capture_screen:bool=False,folder_path:str=None,search_pages:int=5,wechat_path:str=None,is_maximize:bool=True,close_wechat:bool=True)->(str|None):
+def auto_reply_to_friend(friend:str,duration:str,content:str,save_chat_history:bool=False,capture_screen:bool=False,folder_path:str=None,search_pages:int=5,wechat_path:str=None,is_maximize:bool=True,close_wechat:bool=True,delay:float=0.4)->(str|None):
     '''
     该函数用来实现类似QQ的自动回复某个好友的消息\n
     Args:
@@ -8961,6 +8977,7 @@ def auto_reply_to_friend(friend:str,duration:str,content:str,save_chat_history:b
             if newMessage!=initial_last_message and who==friend:
                 edit_area.click_input()
                 pyautogui.hotkey('ctrl','v',_pause=False)
+                time.sleep(delay)
                 pyautogui.hotkey('alt','s',_pause=False)
                 count+=1
         else:
@@ -10183,7 +10200,7 @@ def check_new_message(duration:str=None,save_file:bool=False,target_folder:str=N
                 main_window.close()
             return newMessages
 
-def auto_reply_messages(content:str,duration:str,dontReplytoGroup:bool=False,max_pages:int=5,never_reply:list=[],scroll_delay:int=0,wechat_path:str=None,is_maximize:bool=True,close_wechat:bool=True)->None:
+def auto_reply_messages(content:str,duration:str,dontReplytoGroup:bool=False,max_pages:int=5,never_reply:list=[],scroll_delay:int=0,wechat_path:str=None,is_maximize:bool=True,close_wechat:bool=True,delay:float=0.4)->None:
     '''
     该函数用来遍历会话列表查找新消息自动回复,最大回复数量=max_pages*(8~10)\n
     如果你不想回复某些好友,你可以临时将其设为消息免打扰,或传入\n
@@ -10246,6 +10263,7 @@ def auto_reply_messages(content:str,duration:str,dontReplytoGroup:bool=False,max
             if who==current_chat.window_text() and latest_message!=initial_last_message:#不等于刚打开页面时的那条消息且发送者是对方
                 current_chat.click_input()
                 pyautogui.hotkey('ctrl','v',_pause=False)
+                time.sleep(delay)
                 pyautogui.hotkey('alt','s',_pause=False)
                 responsed_friend.add(current_chat.window_text())
                 if scorllable:
@@ -10256,6 +10274,7 @@ def auto_reply_messages(content:str,duration:str,dontReplytoGroup:bool=False,max
                 if not dontReplytoGroup:
                     current_chat.click_input()
                     pyautogui.hotkey('ctrl','v',_pause=False)
+                    time.sleep(delay)
                     pyautogui.hotkey('alt','s',_pause=False)
                     responsed_friend.add(current_chat.window_text())
                     responsed_groups.add(current_chat.window_text())
@@ -10283,12 +10302,14 @@ def auto_reply_messages(content:str,duration:str,dontReplytoGroup:bool=False,max
                     current_chat=main_window.child_window(**Main_window.CurrentChatWindow)
                     current_chat.click_input()
                     pyautogui.hotkey('ctrl','v',_pause=False)
+                    time.sleep(delay)
                     pyautogui.hotkey('alt','s',_pause=False)
                     responsed_friend.add(name) 
                 if type=='群聊' and not dontReplytoGroup:
                         current_chat=main_window.child_window(**Main_window.CurrentChatWindow)
                         current_chat.click_input()
                         pyautogui.hotkey('ctrl','v',_pause=False)
+                        time.sleep(delay)
                         pyautogui.hotkey('alt','s',_pause=False)
                         responsed_friend.add(name)
                         responsed_groups.add(name)
@@ -10338,7 +10359,7 @@ def auto_reply_messages(content:str,duration:str,dontReplytoGroup:bool=False,max
     if close_wechat:
         main_window.close()
 
-def AI_auto_reply_to_friend(friend:str,duration:str,AI_engine,save_chat_history:bool=False,capture_screen:bool=False,folder_path:str=None,search_pages:int=5,wechat_path:str=None,is_maximize:bool=True,close_wechat:bool=True)->None:
+def AI_auto_reply_to_friend(friend:str,duration:str,AI_engine,save_chat_history:bool=False,capture_screen:bool=False,folder_path:str=None,search_pages:int=5,wechat_path:str=None,is_maximize:bool=True,close_wechat:bool=True,delay:float=0.4)->None:
     '''
     该函数用来接入AI大模型自动回复好友消息\n
     Args:
@@ -10391,6 +10412,7 @@ def AI_auto_reply_to_friend(friend:str,duration:str,AI_engine,save_chat_history:
                     edit_area.click_input()
                     Systemsettings.copy_text_to_windowsclipboard(AI_engine(newMessage))#复制回复内容到剪贴板
                     pyautogui.hotkey('ctrl','v',_pause=False)
+                    time.sleep(delay)
                     pyautogui.hotkey('alt','s',_pause=False)
                     count+=1  
             if type=='群聊':
@@ -10398,6 +10420,7 @@ def AI_auto_reply_to_friend(friend:str,duration:str,AI_engine,save_chat_history:
                     edit_area.click_input()
                     Systemsettings.copy_text_to_windowsclipboard(AI_engine(newMessage))#复制回复内容到剪贴板
                     pyautogui.hotkey('ctrl','v',_pause=False)
+                    time.sleep(delay)
                     pyautogui.hotkey('alt','s',_pause=False)
                     count+=1
         else:
@@ -10761,7 +10784,7 @@ def at_all(group_name:str,is_send:bool=False,search_pages:int=5,wechat_path:str=
     if close_wechat:
         main_window.close()
 
-def auto_reply_to_group(group_name:str,duration:str,content:str,at_only:bool=True,maxReplynum:int=3,at_others:bool=True,save_chat_history:bool=False,capture_screen:bool=False,folder_path:str=None,search_pages:int=5,wechat_path:str=None,is_maximize:bool=True,close_wechat:bool=True)->(str|None):
+def auto_reply_to_group(group_name:str,duration:str,content:str,at_only:bool=True,maxReplynum:int=3,at_others:bool=True,save_chat_history:bool=False,capture_screen:bool=False,folder_path:str=None,search_pages:int=5,wechat_path:str=None,is_maximize:bool=True,close_wechat:bool=True,delay:float=0.4)->(str|None):
     '''
     该函数用来实现自动回复某个群聊的消息,默认只有我在群聊内被别人@时才回复他,回复时默认@别人\n
     Args:
@@ -10798,6 +10821,7 @@ def auto_reply_to_group(group_name:str,duration:str,content:str,at_only:bool=Tru
                 if at_others:
                     at_others(who)
                 pyautogui.hotkey('ctrl','v',_pause=False)
+                time.sleep(delay)
                 pyautogui.hotkey('alt','s',_pause=False)
             else:#消息中没有@我的字样不回复
                 pass
@@ -10806,6 +10830,7 @@ def auto_reply_to_group(group_name:str,duration:str,content:str,at_only:bool=Tru
                 if at_others:
                     at_others(who)
                 pyautogui.hotkey('ctrl','v',_pause=False)
+                time.sleep(delay)
                 pyautogui.hotkey('alt','s',_pause=False)
             else:
                 pass
