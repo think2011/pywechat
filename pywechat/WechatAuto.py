@@ -10988,9 +10988,12 @@ def save_photos(friend:str,number:int,folder_path:str=None,save_method:int=0,is_
                     break
             else:
                 saved_num+=1
-                chat_history_image=image_area.capture_as_image()
-                pic_path=os.path.join(folder_path,f'与{friend}的聊天图片{saved_num}.png')
-                chat_history_image.save(pic_path)
+                
+                # 实际业务无需保存，触发下载即可
+                #chat_history_image=image_area.capture_as_image()
+                #pic_path=os.path.join(folder_path,f'与{friend}的聊天图片{saved_num}.png')
+    
+                # chat_history_image.save(pic_path)
                 pyautogui.press('left',_pause=False)
                 #按下左键后可能会出现这是第一张图片的提示,那么直接退出循环
                 if earliest_image.exists():
